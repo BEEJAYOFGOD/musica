@@ -5,14 +5,14 @@ import { Outlet } from "react-router-dom";
 
 const RootLayout = () => {
     return (
-        <div className="grid grid-cols-[auto_1fr] min-h-screen relative">
-            <div className="border border-white p-4 sticky top-0 overflow-none max-h-screen">
+        <div className="grid grid-cols-[auto_1fr] min-h-screen border border-amber-200 max-w-screen relative">
+            <div className=" p-4 pl-8 sticky top-0 overflow-none max-h-screen">
                 <img className=" mx-auto" src={Logo} alt="logo" />
                 <Sidebar />
             </div>
 
-            <div className="border border-white bg-[#1d2123]">
-                <header className="flex gap-3 items-center border p-6 border-white bg-inherit sticky top-0 z-10">
+            <div className=" bg-[#1d2123]">
+                <header className="flex gap-3 items-center p-6 bg-inherit sticky top-0 z-10">
                     <img className="w-6 h-6" src={search} alt="" />
                     <input
                         type="search"
@@ -22,99 +22,6 @@ const RootLayout = () => {
                 </header>
 
                 <Outlet />
-
-                <div>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sit aliquam nemo qui labore officia necessitatibus illo
-                        ullam voluptatibus, suscipit voluptate obcaecati vitae
-                        laudantium velit distinctio nulla aliquid optio! Quo,
-                        eius. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Qui enim expedita repudiandae vero cum, hic minus
-                        temporibus iusto fuga consequatur? Reprehenderit natus
-                        dolorum fugit iste? Labore explicabo quidem repudiandae
-                        iste!
-                    </p>
-                </div>
             </div>
 
             {/* <div className="flex  border">
