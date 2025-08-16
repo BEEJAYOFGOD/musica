@@ -1,8 +1,7 @@
 import Sidebar from "../component/sidebar";
 import Logo from "../assets/icons/logo.svg";
 import search from "../assets/icons/search.png";
-import artist from "../assets/artist.png";
-import vector from "../assets/icons/vector.svg";
+import { Outlet } from "react-router-dom";
 
 const RootLayout = () => {
     return (
@@ -22,34 +21,7 @@ const RootLayout = () => {
                     />
                 </header>
 
-                <div className="grid grid-cols-2  p-8 text-white ">
-                    <div className="flex bg-[#609EAF] p-12 relative bg-clip-border rounded-[40px]">
-                        <div className="">
-                            <h1>Currated playlist</h1>
-                            <p className="mt-34 text-5xl">R & B Hits</p>{" "}
-                            <p className="max-w-md">
-                                All mine, Lie again, Petty call me everyday, Out
-                                of time, No love, Bad habit, and so much more
-                            </p>
-                            <p className="mt-24">
-                                <img src="" alt="heart" /> <span>likes</span>
-                            </p>
-                        </div>
-                        <div className="right-0 top-0  absolute">
-                            <img
-                                className="rounded-[40px]"
-                                src={vector}
-                                alt=""
-                            />
-                        </div>
-                        <div className="absolute bottom-0 right-0 ">
-                            <img src={artist} alt="artist" />
-                        </div>
-                    </div>
-                    <div>
-                        <img src={artist} alt="artist" />
-                    </div>
-                </div>
+                <Outlet />
 
                 <div>
                     <p>
