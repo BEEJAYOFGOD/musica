@@ -1,7 +1,7 @@
 const Sidebar = () => {
     return (
-        <aside className="pt-8 flex flex-col gap-12 justify-center border items-center ">
-            <div className=" flex flex-col gap-8 bg-[#191a1a] p-4 rounded-full">
+        <aside className="pt-8 flex flex-col gap-12 justify-center items-center ">
+            <div className=" flex flex-col gap-8 bg-[#191a1a] p-4 rounded-[32px]">
                 <svg
                     className="home hover:drop-shadow-2xl hover:drop-shadow-amber-300 group  transition-all duration-300"
                     xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +134,7 @@ const Sidebar = () => {
                 </svg>
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-4 bg-[#191a1a] items-center p-4 rounded-[32px]">
                 <svg
                     className="profile w-8  h-8"
                     xmlns="http://www.w3.org/2000/svg"

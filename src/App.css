@@ -55,3 +55,12 @@ body {
 .hide-scrollbar::-webkit-scrollbar {
     display: none; /* Safari and Chrome */
 }
+
+/* .thumb-shadow {
+    box-shadow: 0 0 0 3px yellow, 0 0 0 6px rgba(255, 255, 255, 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.15);
+} */
+
+svg {
+    cursor: pointer;
+}
