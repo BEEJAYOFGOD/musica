@@ -71,7 +71,7 @@ const Home = () => {
     ];
     return (
         <section className="pb-48">
-            <div className="grid grid-cols-[1.2fr_1fr] gap-x-6  p-6 pr-24 text-white ">
+            <div className="grid grid-cols-[1.2fr_1fr] gap-x-6  pr-20 text-white ">
                 <div className="flex bg-[#609EAF] p-12 relative bg-clip-border rounded-[40px]">
                     <div className="">
                         <h1>Currated playlist</h1>

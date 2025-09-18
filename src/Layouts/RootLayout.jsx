@@ -4,19 +4,19 @@ import Logo from "../assets/icons/logo.svg";
 import search from "../assets/icons/search.png";
 import { Outlet } from "react-router-dom";
 import nowPlaying from "../assets/coverarts/release-7.png";
-import shuffle from "../assets/icons/nowplaying/shuffle.svg";
+// import shuffle from "../assets/icons/nowplaying/shuffle.svg";
 
 const RootLayout = () => {
     const [progress, setProgress] = useState(0);
     return (
-        <div className="grid grid-cols-[auto_1fr] min-h-screen  max-w-screen relative">
+        <div className="grid grid-cols-[auto_1fr] min-h-screen  max-w-screen border relative">
             <div className=" p-4 pl-8 sticky top-0 overflow-none max-h-screen">
                 <img className=" mx-auto" src={Logo} alt="logo" />
                 <Sidebar />
             </div>
 
-            <div className=" bg-[#1d2123]">
-                <header className="flex gap-3 items-center p-6 bg-inherit sticky top-0 z-10">
+            <div className="">
+                <header className="flex gap-3 items-center p-6 bg-transparent backdrop-blur-xsplay sticky border top-0 z-10">
                     <img className="w-6 h-6" src={search} alt="" />
                     <input
                         type="search"
@@ -25,7 +25,9 @@ const RootLayout = () => {
                     />
                 </header>
 
-                <Outlet />
+                <div className="p-3 border border-red-400 w-full">
+                    <Outlet />
+                </div>
             </div>
 
             {/*Now playing fixed section */}
