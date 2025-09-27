@@ -2,7 +2,7 @@ const CollectionCard = ({ coverArt, author, title }) => {
     return (
         <article className="relative h-60 aspect-square  rounded-[10px] group overflow-hidden">
             <div
-                className="absolute h-full w-full rounded-[10px]  bg-cover -z-3 group-hover:scale-150 group-hover:ease-in transition-all duration-300 ease-out"
+                className="absolute h-full w-full rounded-[10px]  bg-cover -z-3 group-hover:scale-125 group-hover:ease-in transition-all duration-300 ease-out"
                 style={{
                     backgroundImage: `
                                 linear-gradient(to bottom,
