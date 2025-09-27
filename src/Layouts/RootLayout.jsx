@@ -37,7 +37,7 @@ const RootLayout = () => {
                 <header
                     className={`flex gap-3 items-center p-6 sticky top-0 z-10 transition-all duration-300 ${
                         isScrolled
-                            ? "bg-gray-900/80 backdrop-blur-xs  "
+                            ? "bg-[#1d2123]/80 backdrop-blur-xs  "
                             : "bg-transparent"
                     }`}
                 >

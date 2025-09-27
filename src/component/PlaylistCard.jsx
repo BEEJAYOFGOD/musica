@@ -1,4 +1,10 @@
+import { useState } from "react";
+
 const PlaylistCard = ({ coverArt, title, artist, length }) => {
+    const [Like, setLike] = useState(false);
+    const handleOnCLick = () => {
+        setLike(!Like);
+    };
     return (
         <article
             className="flex gap-3 bg-[#1A1E1F] rounded-[15px] p-4"
@@ -19,7 +25,8 @@ const PlaylistCard = ({ coverArt, title, artist, length }) => {
                         width="18"
                         height="18"
                         viewBox="0 0 18 18"
-                        fill="none"
+                        fill={Like ? "#FACD66" : "none"}
+                        onClick={handleOnCLick}
                     >
                         <path
                             fill-rule="evenodd"
