@@ -1,10 +1,25 @@
 import lead_image from "../../src/assets/coverarts/Lead-image.png";
+import lead_image_big from "../../src/assets/coverarts/Lead-image-big.png";
 import add_to_col from "../../src/assets/icons/music-square-add.png";
+import release_one from "../../src/assets/coverarts/release-1.png";
+import AlbumMusicCard from "../component/AlbumMusicCard";
 
 const Playlist = () => {
     return (
         <section className="p-4">
             <section className="flex gap-6">
+                <div
+                    className="absolute inset-0 -z-99 w-full h-full bg-cover bg-center"
+                    style={{
+                        backgroundImage: `
+                        linear-gradient(to bottom,
+                        rgba(29, 33, 35, 0.6) 0%,
+                        rgba(29, 33, 35, 0.8) 30%,
+                        rgba(29, 33, 35, 0.9) 50%,
+                        rgba(29, 33, 35, 1) 100%),
+                        url(${lead_image_big})`,
+                    }}
+                ></div>
                 <div
                     className="h-80 aspect-square rounded-[20px]"
                     style={{
@@ -59,6 +74,18 @@ const Playlist = () => {
                     </div>
                 </div>
             </section>
+
+            <div className="flex flex-col gap-2 mt-8 ">
+                {Array.from({ length: 40 }, (_, index) => (
+                    <AlbumMusicCard
+                        coverArt={release_one}
+                        title={"Love me love you"}
+                        musicName={"stand strong"}
+                        albumName={"African Giant"}
+                        length={"2:09"}
+                    />
+                ))}
+            </div>
         </section>
     );
 };

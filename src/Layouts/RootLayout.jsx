@@ -1,55 +1,78 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Sidebar from "../component/sidebar";
 import Logo from "../assets/icons/logo.svg";
 import search from "../assets/icons/search.png";
 import { Outlet } from "react-router-dom";
 import nowPlaying from "../assets/coverarts/release-7.png";
-// import shuffle from "../assets/icons/nowplaying/shuffle.svg";
 
 const RootLayout = () => {
     const [progress, setProgress] = useState(0);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const scrollContainerRef = useRef(null);
+
+    useEffect(() => {
+        const handleScroll = (e) => {
+            const scrollTop = e.target.scrollTop;
+
+            console.log("amen");
+            setIsScrolled(scrollTop > 0);
+        };
+
+        const scrollContainer = scrollContainerRef.current;
+        if (scrollContainer) {
+            scrollContainer.addEventListener("scroll", handleScroll);
+            return () =>
+                scrollContainer.removeEventListener("scroll", handleScroll);
+        }
+    }, []);
+
     return (
-        <div className="grid grid-cols-[auto_1fr] min-h-screen  max-w-screen border relative">
-            <div className=" p-4 pl-8 sticky top-0 overflow-none max-h-screen">
-                <img className=" mx-auto" src={Logo} alt="logo" />
+        <div className="grid grid-cols-[auto_1fr] h-screen max-w-screen relative">
+            <div className="p-4 pl-8 sticky top-0 overflow-none max-h-screen">
+                <img className="mx-auto" src={Logo} alt="logo" />
                 <Sidebar />
             </div>
 
-            <div className="">
-                <header className="flex gap-3 items-center p-6 bg-transparent backdrop-blur-xsplay sticky border top-0 z-10">
+            <div ref={scrollContainerRef} className="overflow-y-auto">
+                <header
+                    className={`flex gap-3 items-center p-6 sticky top-0 z-10 transition-all duration-300 ${
+                        isScrolled
+                            ? "bg-gray-900/80 backdrop-blur-xs  "
+                            : "bg-transparent"
+                    }`}
+                >
                     <img className="w-6 h-6" src={search} alt="" />
                     <input
                         type="search"
-                        className="placeholder:text-gray-400 outline-0 text-gray-300 text-xl bg-transparent"
+                        className="placeholder:text-gray-400 outline-0 text-gray-300 text-xl bg-transparent flex-1"
                         placeholder="Search artist"
                     />
                 </header>
 
-                <div className="p-3 border border-red-400 w-full">
+                <div className="p-3 w-full">
                     <Outlet />
                 </div>
             </div>
 
-            {/*Now playing fixed section */}
-
+            {/* Now playing fixed section */}
             <section
                 id="music-nav"
-                className="h-48 fixed bottom-0  w-full flex gap-16 items-center justify-between px-28 bg-transparent shadow-[0_-4px_25px_rgba(0,0,0,0.4)] backdrop-blur-2xl"
+                className="h-48 fixed bottom-0 z-0 w-full flex gap-16 items-center justify-between px-28 bg-transparent shadow-[0_-4px_25px_rgba(0,0,0,0.4)] backdrop-blur-2xl"
             >
-                <div className="flex gap-3 text-white ">
+                <div className="flex gap-3 text-white">
                     <img
                         className="w-24 rounded-[10px]"
                         src={nowPlaying}
                         alt=""
                     />
-                    <div className="flex flex-col justify-center ">
+                    <div className="flex flex-col justify-center">
                         <p className="text-nowrap">Seasons in</p>
                         <p className="text-white/50">James</p>
                     </div>
                 </div>
 
                 {/* Sound nav btns */}
-                <div className=" w-full">
+                <div className="w-full">
                     <div className="flex gap-8 justify-center items-center">
                         {/* shuffle btn */}
                         <svg
@@ -73,8 +96,7 @@ const RootLayout = () => {
                             />
                         </svg>
 
-                        {/*prv btn */}
-
+                        {/* prev btn */}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -93,8 +115,8 @@ const RootLayout = () => {
                             />
                         </svg>
 
-                        {/*play btn */}
-                        <div className="bg-[#f1b937]/95 hover:bg-[#f1b937]/90 hover:shadow-[0px_-2px_12px_red] shadow-[0px_-2px_10px_1px]  shadow-black hover:shadow-amber-500 rounded-full flex justify-center items-center p-4 cursor-pointer">
+                        {/* play btn */}
+                        <div className="bg-[#f1b937]/95 hover:bg-[#f1b937]/90 hover:shadow-[0px_-2px_12px_red] shadow-[0px_-2px_10px_1px] shadow-black hover:shadow-amber-500 rounded-full flex justify-center items-center p-4 cursor-pointer">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="9"
@@ -109,7 +131,7 @@ const RootLayout = () => {
                             </svg>
                         </div>
 
-                        {/* nextbtn */}
+                        {/* next btn */}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -127,7 +149,7 @@ const RootLayout = () => {
                             />
                         </svg>
 
-                        {/* rpt btn */}
+                        {/* repeat btn */}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="16"
@@ -162,21 +184,20 @@ const RootLayout = () => {
                             }}
                             className="w-full h-1 rounded-lg appearance-none cursor-pointer
                             [&::-webkit-slider-thumb]:shadow-[0_0_0_3px_rgba(0,0,0,0.6),0_0_0_3px_rgba(255,255,255,0.8),0_2px_4px_rgba(0,0,0,0.15)]
-                [&::-webkit-slider-thumb]:appearance-none
-               [&::-webkit-slider-thumb]:w-2
-               [&::-webkit-slider-thumb]:h-2
-               [&::-webkit-slider-thumb]:rounded-full
-               [&::-webkit-slider-thumb]:bg-amber-400
-               [&::-webkit-slider-thumb]:cursor-pointer
-
-               [&::-webkit-slider-thumb]:hover:scale-110
-               [&::-webkit-slider-thumb]:transition-transform
-               [&::-moz-range-thumb]:w-3
-               [&::-moz-range-thumb]:h-3
-               [&::-moz-range-thumb]:rounded-full
-               [&::-moz-range-thumb]:bg-amber-400
-               [&::-moz-range-thumb]:cursor-pointer
-               [&::-moz-range-thumb]:border-0"
+                            [&::-webkit-slider-thumb]:appearance-none
+                            [&::-webkit-slider-thumb]:w-2
+                            [&::-webkit-slider-thumb]:h-2
+                            [&::-webkit-slider-thumb]:rounded-full
+                            [&::-webkit-slider-thumb]:bg-amber-400
+                            [&::-webkit-slider-thumb]:cursor-pointer
+                            [&::-webkit-slider-thumb]:hover:scale-110
+                            [&::-webkit-slider-thumb]:transition-transform
+                            [&::-moz-range-thumb]:w-3
+                            [&::-moz-range-thumb]:h-3
+                            [&::-moz-range-thumb]:rounded-full
+                            [&::-moz-range-thumb]:bg-amber-400
+                            [&::-moz-range-thumb]:cursor-pointer
+                            [&::-moz-range-thumb]:border-0"
                         />
                     </div>
                 </div>
@@ -215,17 +236,17 @@ const RootLayout = () => {
                             borderRadius: "10px",
                         }}
                         className="w-full h-1 rounded-lg appearance-none cursor-pointer
-           [&::-webkit-slider-thumb]:appearance-none
-           [&::-webkit-slider-thumb]:w-0
-           [&::-webkit-slider-thumb]:h-0
-           [&::-webkit-slider-thumb]:bg-transparent
-           [&::-webkit-slider-thumb]:border-0
-           [&::-webkit-slider-thumb]:shadow-none
-           [&::-moz-range-thumb]:w-0
-           [&::-moz-range-thumb]:h-0
-           [&::-moz-range-thumb]:bg-transparent
-           [&::-moz-range-thumb]:border-0
-           [&::-moz-range-thumb]:opacity-0"
+                        [&::-webkit-slider-thumb]:appearance-none
+                        [&::-webkit-slider-thumb]:w-0
+                        [&::-webkit-slider-thumb]:h-0
+                        [&::-webkit-slider-thumb]:bg-transparent
+                        [&::-webkit-slider-thumb]:border-0
+                        [&::-webkit-slider-thumb]:shadow-none
+                        [&::-moz-range-thumb]:w-0
+                        [&::-moz-range-thumb]:h-0
+                        [&::-moz-range-thumb]:bg-transparent
+                        [&::-moz-range-thumb]:border-0
+                        [&::-moz-range-thumb]:opacity-0"
                     />
                 </div>
             </section>

@@ -1,18 +1,17 @@
-const PlaylistCard = ({ coverArt, title, artist, length }) => {
+import menu from "../assets/icons/more-vertical.svg";
+
+const AlbumMusicCard = ({ coverArt, title, musicName, albumName, length }) => {
     return (
         <article
-            className="flex gap-3 bg-[#1A1E1F] rounded-[15px] p-4"
+            className="flex gap-3 bg-[#1A1E1F] rounded-[15px] p-3 cursor-pointer"
             // style={{ background: "rgba(51, 55, 59, 0.37)" }}
         >
-            <div className="rounded-[10px]">
-                <img className="w-[63px] aspect-square" src={coverArt} alt="" />
-            </div>
-            <div className="flex justify-between  w-full">
-                <div className=" text-white gap-2">
-                    <h3>{title}</h3>
-                    <p className="text-white/50">{artist}</p>
-                    <p>{length}</p>
-                </div>
+            <div className="rounded-[10px] flex gap-6">
+                <img
+                    className="w-[39px] rounded-[8px] aspect-square"
+                    src={coverArt}
+                    alt=""
+                />
                 <div className="flex justify-center items-center">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -41,8 +40,16 @@ const PlaylistCard = ({ coverArt, title, artist, length }) => {
                     </svg>
                 </div>
             </div>
+            <div className="flex items-center pl-18 text-white pr-8 justify-between  w-full">
+                <p>{title}</p>
+                <p>{musicName}</p>
+                <p className="text-white/50">{albumName}</p>
+                <p>{length}</p>
+
+                <img className="w-6 aspect-square" src={menu} alt="" />
+            </div>
         </article>
     );
 };
 
-export default PlaylistCard;
+export default AlbumMusicCard;

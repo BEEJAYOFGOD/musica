@@ -75,12 +75,12 @@ const Home = () => {
                 <div className="flex bg-[#609EAF] p-12 relative bg-clip-border rounded-[40px]">
                     <div className="">
                         <h1>Currated playlist</h1>
-                        <p className="mt-34 text-5xl">R & B Hits</p>{" "}
+                        <p className="mt-28 text-5xl">R & B Hits</p>{" "}
                         <p className="max-w-md">
                             All mine, Lie again, Petty call me everyday, Out of
                             time, No love, Bad habit, and so much more
                         </p>
-                        <p className="mt-13">
+                        <p className="mt-16">
                             <img src="" alt="heart" /> <span>likes</span>
                         </p>
                     </div>
@@ -111,18 +111,8 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {/*
-            <div className="flex gap-8 overflow-x-auto w-[90vw] overflow-y-hidden  hide-scrollbar">
-                {releaseList.map(({ coverArt, title, artist }) => (
-                    <SongCard
-                        coverArt={coverArt}
-                        title={title}
-                        artist={artist}
-                    />
-                ))}
-            </div> */}
 
-            <div className="w-[92vw] pl-4 pr-20 space-y-2">
+            <div className="w-[92vw] pl-4 pr-20 space-y-2 mt-12">
                 <h2 className="text-white">New Releases</h2>
                 <div className="flex gap-8  overflow-scroll max-w-[92vw]   hide-scrollbar box-border">
                     {releaseList.map(({ coverArt, title, artist }) => (
