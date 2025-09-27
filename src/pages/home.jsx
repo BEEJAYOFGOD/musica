@@ -75,9 +75,7 @@ const Home = () => {
                 <div className="flex bg-[#609EAF] p-12 relative bg-clip-border rounded-[40px]">
                     <div className="">
                         <h1>Currated playlist</h1>
-                        <p className="mt-28 text-5xl font-bold">
-                            R & B Hits
-                        </p>{" "}
+                        <p className="mt-28 text-5xl font-bold">R & B Hits</p>
                         <p className="max-w-md">
                             All mine, Lie again, Petty call me everyday, Out of
                             time, No love, Bad habit, and so much more
