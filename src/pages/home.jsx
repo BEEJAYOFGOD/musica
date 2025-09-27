@@ -1,5 +1,5 @@
 import artist from "../assets/artist.png";
-import vector from "../assets/icons/vector.svg";
+import vector from "../assets/icons/Vector.svg";
 import playlist1 from "../assets/Rectangle-1.png";
 import playlist2 from "../assets/Rectangle-2.png";
 import playlist3 from "../assets/Rectangle-3.png";
