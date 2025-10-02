@@ -21,10 +21,10 @@ const CollectionCard = ({ coverArt, author, title }) => {
                 </p>
             </div>
 
-            <div className="absolute right-4 bottom-4 opacity-0 group-hover:opacity-100 p-4 bg-[#FACD66]/45 rounded-full  group-hover:translate-0 transition-all duration-300 ease-out group-hover:ease-in ">
+            <div className="absolute right-4  bottom-4 opacity-0 group-hover:opacity-100 p-4 bg-[#FACD66]/45 rounded-full  group-hover:translate-0 transition-all duration-300 ease-out group-hover:ease-in">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="9"
+                    width="10"
                     height="10"
                     viewBox="0 0 9 10"
                     fill="none"

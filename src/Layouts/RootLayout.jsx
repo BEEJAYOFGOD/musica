@@ -4,17 +4,62 @@ import Logo from "../assets/icons/logo.svg";
 import search from "../assets/icons/search.png";
 import { Outlet } from "react-router-dom";
 import nowPlaying from "../assets/coverarts/release-7.png";
+import { useSpotify } from "../contexts/SpotifyContext";
 
 const RootLayout = () => {
     const [progress, setProgress] = useState(0);
     const [isScrolled, setIsScrolled] = useState(false);
     const scrollContainerRef = useRef(null);
+    const { token } = useSpotify();
 
+    // const getAccessToken = async () => {
+    //     const client_id = "b6137303ff624b66bff3911f9e285a4d";
+    //     const client_secret = "4a04617eb90b4cd4a279d26de9d48943";
+
+    //     const response = await fetch("https://accounts.spotify.com/api/token", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/x-www-form-urlencoded",
+    //             Authorization: "Basic " + btoa(client_id + ":" + client_secret),
+    //         },
+    //         body: "grant_type=client_credentials",
+    //     });
+
+    //     const data = await response.json();
+    //     return data; // This is what you use for API calls
+    // };
+
+    const getNewReleases = async (country = "NG") => {
+        const response = await fetch(
+            `https://api.spotify.com/v1/browse/new-releases?market=${country}&limit=20&al`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        const data = await response.json();
+        return data.albums.items;
+    };
+
+    const main = async () => {
+        // const accessToken = await getAccessToken();
+        // console.log(accessToken); // Now this will log the actual token
+        // Usage
+        const nigerianReleases = await getNewReleases("NG");
+        const usReleases = await getNewReleases("US");
+
+        console.log("NGERIA");
+        console.log(nigerianReleases);
+        console.log("USA");
+        console.log(usReleases);
+    };
+
+    main();
     useEffect(() => {
         const handleScroll = (e) => {
             const scrollTop = e.target.scrollTop;
 
-            console.log("amen");
             setIsScrolled(scrollTop > 0);
         };
 
@@ -57,7 +102,7 @@ const RootLayout = () => {
             {/* Now playing fixed section */}
             <section
                 id="music-nav"
-                className="h-48 fixed bottom-0 z-0 w-full flex gap-16 items-center justify-between px-28 bg-transparent shadow-[0_-4px_25px_rgba(0,0,0,0.4)] backdrop-blur-2xl"
+                className="h-48 fixed bottom-0 z-0 w-full flex gap-16 items-center justify-between px-28 bg-[#1d2123]/60 shadow-[0_-4px_25px_rgba(0,0,0,0.4)] backdrop-blur-xl"
             >
                 <div className="flex gap-3 text-white">
                     <img

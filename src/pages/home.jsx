@@ -13,28 +13,92 @@ import release_6 from "../assets/coverarts/release-6.png";
 import release_7 from "../assets/coverarts/release-7.png";
 import release_8 from "../assets/coverarts/release-8.png";
 import SongCard from "../component/SongCard";
+import { useSpotify } from "../contexts/SpotifyContext";
+import { useEffect, useState } from "react";
+import { Album } from "lucide-react";
 
 const Home = () => {
-    const playlists = [
+    const { token } = useSpotify();
+    const [playLists, setPlaylists] = useState([
         {
-            coverArt: playlist1,
-            title: "Golden age of 80s",
-            artist: " Sean Swadder",
-            length: "2:34:45",
+            coverArt: "",
+            title: "",
+            artist: "",
+            length: "",
         },
-        {
-            coverArt: playlist2,
-            title: "Golden age of 80s",
-            artist: " Sean Swadder",
-            length: "2:34:45",
-        },
-        {
-            coverArt: playlist3,
-            title: "Golden age of 80s",
-            artist: " Sean Swadder",
-            length: "2:34:45",
-        },
-    ];
+    ]);
+
+    console.log(token);
+
+    useEffect(() => {
+        const fetchAlbumsWithDuration = async () => {
+            if (!token) return;
+
+            try {
+                // 1. Get artist's albums (what you already have)
+                // const artistResponse = await fetch(
+                //     `https://api.spotify.com/v1/search?q=Asake&type=artist&limit=1`,
+                //     { headers: { Authorization: `Bearer ${token}` } }
+                // );
+                // const artistData = await artistResponse.json();
+                // const artistId = artistData.artists.items[0]?.id;
+
+                const albumsResponse = await fetch(
+                    `https://api.spotify.com/v1/artists/3a1tBryiczPAZpgoZN9Rzg/albums?include_groups=album&limit=3`,
+                    { headers: { Authorization: `Bearer ${token}` } }
+                );
+                const albumsData = await albumsResponse.json();
+
+                // 2. Fetch full details for each album (including duration)
+                const albumsWithDuration = await Promise.all(
+                    albumsData.items.map(async (album) => {
+                        /// fetch single album data
+                        const fullAlbumResponse = await fetch(
+                            `https://api.spotify.com/v1/albums/${album.id}`,
+                            {
+                                headers: {
+                                    Authorization: `Bearer ${token}`,
+                                },
+                            }
+                        );
+
+                        const fullAlbum = await fullAlbumResponse.json();
+
+                        console.log(fullAlbum.tracks);
+                        // Calculate duration
+                        const totalMs = fullAlbum.tracks.items.reduce(
+                            (sum, track) => sum + track.duration_ms,
+                            0
+                        );
+                        const minutes = Math.floor(totalMs / 60000);
+                        const seconds = Math.floor((totalMs % 60000) / 1000);
+                        const { name: title, images, artists } = album;
+                        const coverArt = images[0].url;
+                        const artist = artists[0].name;
+
+                        console.log(title);
+                        console.log(coverArt);
+                        console.log(artist);
+                        return {
+                            // ...album,
+                            coverArt,
+                            title,
+                            artist,
+                            length: `${minutes}m ${seconds}s`,
+                        };
+                    })
+                );
+
+                // setAlbums(albumsWithDuration);
+                setPlaylists(albumsWithDuration);
+                console.log(albumsWithDuration);
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        };
+
+        fetchAlbumsWithDuration();
+    }, [token]);
 
     const releaseList = [
         {
@@ -98,16 +162,17 @@ const Home = () => {
                 <div className="space-y-4">
                     <h2 className="text-3xl">Top charts</h2>
                     <div className="space-y-4">
-                        {playlists.map(
-                            ({ coverArt, title, artist, length }) => (
-                                <PlaylistCard
-                                    coverArt={coverArt}
-                                    title={title}
-                                    artist={artist}
-                                    length={length}
-                                />
-                            )
-                        )}
+                        {playLists &&
+                            playLists.map(
+                                ({ coverArt, title, artist, length }) => (
+                                    <PlaylistCard
+                                        coverArt={coverArt}
+                                        title={title}
+                                        artist={artist}
+                                        length={length}
+                                    />
+                                )
+                            )}
                     </div>
                 </div>
             </div>
@@ -126,7 +191,7 @@ const Home = () => {
             </div>
 
             <div className="w-[92vw] pl-4 pr-20 mt-8 space-y-2">
-                <h2 className="text-white">New Releases</h2>
+                <h2 className="text-white">Popular in your area</h2>
                 <div className="flex gap-8  overflow-scroll max-w-[92vw]   hide-scrollbar box-border">
                     {releaseList.map(({ coverArt, title, artist }) => (
                         <SongCard

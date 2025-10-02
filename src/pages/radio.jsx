@@ -4,7 +4,7 @@ import release_three from "../../src/assets/coverarts/release-3.png";
 import CollectionCard from "../../src/component/CollectionCard";
 const Radio = () => {
     return (
-        <section>
+        <section className="pb-52">
             <div className="flex gap-4">
                 <button className="bg-[#FACD66] px-4 py-2 rounded-full">
                     My collection
